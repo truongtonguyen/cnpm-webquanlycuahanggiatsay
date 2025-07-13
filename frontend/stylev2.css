@@ -1,0 +1,268 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: 'Arial', sans-serif;
+}
+
+body {
+  background: #f7f7f7;
+  color: #333;
+}
+
+/* ===== HEADER & LOGO ===== */
+header {
+  background-color: 1E66B8;
+  color: white;
+}
+
+.top-header {
+  background-color: #5FA0EA;
+  padding: 20px 0;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.logo-area {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 15px;
+}
+
+.logo-area img {
+  height: 60px;
+}
+
+.logo-text h1 {
+  margin: 0;
+  font-size: 22px;
+  font-weight: bold;
+  color: white;
+}
+
+.logo-text p {
+  margin: 0;
+  font-size: 14px;
+  color: #e0e0e0;
+}
+
+/* ===== MENU ===== */
+.main-menu {
+  background-color: #005bb5;
+}
+
+.main-menu .container {
+  display: flex;
+  justify-content: center; /* Căn giữa menu */
+}
+
+.main-menu ul {
+  display: flex;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  gap: 50px;
+}
+
+.main-menu a {
+  color: white;
+  text-decoration: none;
+  font-size: 15px;
+  padding: 16px 0;
+  display: inline-block;
+}
+
+.main-menu a:hover {
+  text-decoration: underline;
+}
+
+/* ===== BANNER ===== */
+.banner {
+  text-align: center;
+  background-color: #e1f3ff;
+  padding: 40px 20px;
+}
+
+.banner img {
+  max-width: 100%;
+  height: auto;
+  width: 320px;
+  margin-top: 10px;
+}
+
+/* ===== MAIN CONTENT ===== */
+main {
+  padding: 40px 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.intro h2 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 30px;
+  margin-top: 20px;
+  flex-wrap: wrap;
+}
+
+.content .text {
+  flex: 1;
+  min-width: 300px;
+}
+
+.content img {
+  width: 300px;
+  max-width: 100%;
+}
+
+/* ===== FORM ===== */
+.form-section {
+  margin-top: 90px;
+  display: flex;
+  justify-content: space-between;
+  gap: 40px;
+  flex-wrap: wrap;
+  align-items: flex-start;
+}
+
+.form-section form {
+  flex: 1;
+  min-width: 300px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.form-section img {
+  width: 100%;
+  max-width: 350px;
+  object-fit: contain;
+}
+
+.form-section input,
+.form-section select,
+.form-section textarea {
+  padding: 10px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+}
+
+.form-section button {
+  background-color: #0077cc;
+  color: white;
+  border: none;
+  padding: 12px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+/* THÔNG BÁO */
+#thongbao {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: rgba(0,0,0,0.4);
+  display: none;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+}
+
+#thongbao.hien-ra {
+  display: flex;
+}
+
+.hop-thongbao {
+  background: white;
+  padding: 30px;
+  border-radius: 10px;
+  text-align: center;
+  max-width: 400px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.3);
+}
+
+.hop-thongbao button {
+  margin-top: 15px;
+  background-color: #4486ff;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+/* ===== FOOTER ===== */
+.site-footer {
+  background-color: #5FA0EA;
+  color: white;
+  font-family: Arial, sans-serif;
+}
+
+.footer-main {
+  display: flex;
+  justify-content: space-between;
+  padding: 30px 40px;
+  flex-wrap: wrap;
+}
+
+.footer-left {
+  max-width: 300px;
+}
+
+.footer-logo {
+  height: 100px;
+  vertical-align: middle;
+  margin-bottom: 10px;
+}
+
+.footer-brand h2 {
+  font-size: 22px;
+  margin: 5px 0 0;
+}
+
+.footer-brand p {
+  font-size: 14px;
+  margin: 0 0 10px;
+}
+
+.footer-description {
+  font-size: 13px;
+  margin-top: 5px;
+  line-height: 1.4;
+}
+
+.footer-contact h3 {
+  font-size: 16px;
+  margin-bottom: 10px;
+}
+
+.footer-contact p {
+  font-size: 14px;
+  margin-bottom: 6px;
+}
+
+.footer-map {
+  font-size: 20px;
+  font-weight: bold;
+  align-self: flex-start;
+}
+
+.footer-bottom {
+  text-align: center;
+  font-size: 13px;
+  padding: 10px;
+  background-color: #5FA0EA;
+  border-top: 1px solid #1E66B8;
+}
