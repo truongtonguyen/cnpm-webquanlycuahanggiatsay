@@ -67,10 +67,10 @@ nav a:hover {
 
 .banner img {
   width: 100%;
-  height: auto;
+  height: 220px;
 }
 
-.about, .process, .services, .contact {
+.about, .process, .services {
   padding: 40px 20px;
   text-align: center;
 }
@@ -203,18 +203,61 @@ nav a:hover {
   color: #555;
 }
 
-
-.service-list {
-  display: flex;
-  justify-content: center;
-  gap: 20px;
+.featured-services {
+  padding: 60px 20px;
+  text-align: center;
+  background-color: #fff;
 }
 
-.service-list img {
-  width: 200px;
-  height: 150px;
+.featured-services h2 {
+  font-size: 22px;
+  margin-bottom: 40px;
+  color: #333;
+}
+
+.service-preview-grid {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  flex-wrap: wrap;
+}
+
+.service-preview-item {
+  width: 260px;
+  background-color: #e9dede;
+  padding: 15px;
+  text-decoration: none;
+  color: #222;
+  transition: transform 0.3s, box-shadow 0.3s;
+  border-radius: 4px;
+}
+
+.service-preview-item img {
+  width: 100%;
+  height: 200px;
   object-fit: cover;
-  border-radius: 10px;
+  border-radius: 3px;
+  margin-bottom: 10px;
+}
+
+.service-preview-item h3 {
+  font-size: 16px;
+  margin: 10px 0 5px;
+}
+
+.service-preview-item p {
+  font-size: 14px;
+  margin-bottom: 8px;
+}
+
+.service-preview-item .price {
+  font-weight: bold;
+  color: #333;
+}
+
+.service-preview-item:hover {
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+  transform: scale(1.03);
 }
 
 /* Dịch vụ*/
@@ -232,43 +275,44 @@ nav a:hover {
 
 .service-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(3, 1fr); /* 3 cột */
   gap: 30px;
-  max-width: 1200px;
+  max-width: 1100px;
   margin: 0 auto;
 }
 
 .service-item {
-  background-color: #BDAEAE;
-  padding: 15px;
-  transition: box-shadow 0.3s ease; /* smooth transition */
-  transition: all 0.3s ease;
+  background-color: #d9c7c3;
+  text-decoration: none;
+  padding: 20px;
+  transition: transform 0.3s, box-shadow 0.3s;
+  text-align: center;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+
 }
 
 .service-item:hover {
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15); /* đổ bóng mềm */
-  cursor: pointer; /* dấu tay */
-  transform: scale(1.02); /* phóng nhẹ */
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0,0,0,0.2);
 }
 
 .service-item img {
   width: 100%;
-  height: 400px;
+  height: 300px;
   object-fit: cover;
   margin-bottom: 10px;
 }
 
 .service-item h3 {
-  font-size: 15px;
-  font-weight: bold;
-  color: #222;
-  margin: 5px 0;
+  font-size: 18px;
+  color: #333;
+  margin: 10px 0 5px;
 }
 
 .service-item p {
-  font-size: 13px;
-  color: #555;
-  margin: 0;
+  font-size: 14px;
+  color: #333;
+  margin: 5px 0;
 }
 
 .site-footer {
