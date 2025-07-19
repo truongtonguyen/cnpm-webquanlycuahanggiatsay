@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tạo hóa đơn</title>
+  <link rel="stylesheet" href="admin_style.css">
+</head>
+<body>
+  <header class="admin-header">
+    <h1>Tạo hóa đơn từ đơn hàng</h1>
+  </header>
+  <nav class="admin-nav">
+    <a href="trang_chu_admin.html">Tổng quan</a>
+    <a href="don_hang.html">Đơn hàng</a>
+    <a href="hoa_don.html">Hóa đơn</a>
+    <a href="#" onclick="logout()">Đăng xuất</a>
+  </nav>
+
+  <main class="admin-container">
+    <h2>Nhập thông tin hóa đơn</h2>
+    <form id="invoiceForm">
+      <label for="quantity">Số lượng</label>
+      <input type="number" id="quantity" required>
+
+      <label for="unit">Đơn vị tính</label>
+      <select id="unit" required>
+        <option value="cái">Cái</option>
+        <option value="kg">Kg</option>
+        <option value="m2">m²</option>
+      </select>
+
+      <label for="unit_price">Đơn giá</label>
+      <input type="number" id="unit_price" required>
+
+      <button type="submit">Tạo hóa đơn</button>
+    </form>
+  </main>
+
+  <script src="admin.js"></script>
+</body>
+</html>

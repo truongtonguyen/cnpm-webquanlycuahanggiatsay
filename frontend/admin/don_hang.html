@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Quản lý đơn hàng</title>
+  <link rel="stylesheet" href="admin_style.css">
+</head>
+<body>
+  <header class="admin-header">
+    <h1>Quản lý Đơn Hàng</h1>
+  </header>
+  <nav class="admin-nav">
+    <a href="trang_chu_admin.html">Tổng quan</a>
+    <a href="don_hang.html" class="active">Đơn hàng</a>
+    <a href="hoa_don.html">Hóa đơn</a>
+    <a href="#" onclick="logout()">Đăng xuất</a>
+  </nav>
+
+  <main class="admin-container">
+    <h2>Danh sách đơn đặt hàng</h2>
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Họ tên</th>
+          <th>Dịch vụ</th>
+          <th>Ngày hẹn</th>
+          <th>Liên hệ</th>
+          <th>Ghi chú</th>
+          <th>Hành động</th>
+        </tr>
+      </thead>
+      <tbody id="orderTableBody">
+        <!-- render bằng JS -->
+      </tbody>
+    </table>
+  </main>
+
+  <script src="admin.js"></script>
+</body>
+</html>

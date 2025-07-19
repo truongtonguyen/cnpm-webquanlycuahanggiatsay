@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Trang chủ Admin | Chạy Siêu Nhanh</title>
+  <link rel="stylesheet" href="../client/style.css">
+  <link rel="stylesheet" href="admin_style.css">
+</head>
+<body>
+  <header class="admin-header">
+    <h1>Trang Quản Trị - Chạy Siêu Nhanh</h1>
+  </header>
+
+  <nav class="admin-nav">
+    <a href="trang_chu_admin.html" class="active">Tổng quan</a>
+    <a href="don_hang.html">Đơn hàng</a>
+    <a href="hoa_don.html">Hóa đơn</a>
+    <a href="#" onclick="logout()">Đăng xuất</a>
+  </nav>
+
+  <main class="admin-container">
+    <h2>Tổng quan</h2>
+    <div class="card-grid">
+      <div class="card">
+        <h3>Tổng số đơn hàng</h3>
+        <p id="total-orders">0</p>
+      </div>
+
+      <div class="card">
+        <h3>Hóa đơn đã tạo</h3>
+        <p id="total-invoices">0</p>
+      </div>
+
+      <div class="card">
+        <h3>Hóa đơn chưa thanh toán</h3>
+        <p id="pending-invoices">0</p>
+      </div>
+    </div>
+  </main>
+
+  <script src="admin_dashboard.js"></script>
+</body>
+</html>
