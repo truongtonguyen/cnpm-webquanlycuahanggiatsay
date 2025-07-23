@@ -90,6 +90,7 @@ CREATE TABLE ChiTietDonDat (
     FOREIGN KEY (MaDonDat) REFERENCES DonDat(MaDonDat),
     FOREIGN KEY (MaDichVu) REFERENCES DichVu(MaDichVu)
 );
+
 SELECT MaDonDat, TenKH, SDT_KH, NgayDat, MaDichVu, GhiChu, TrangThai, MaKH
 FROM DonDat
 WHERE TrangThai = 'Chưa xử lý';
@@ -101,7 +102,12 @@ CREATE TABLE HoaDon (
     SoLuong INT,
     TrangThai VARCHAR(50),
     FOREIGN KEY (MaDonDat) REFERENCES DonDat(MaDonDat)
-);
+); 
+ALTER TABLE HoaDon 
+ADD COLUMN DonGia DECIMAL(18,2),
+ADD COLUMN DonViTinh VARCHAR(50);
+
+
 
 CREATE TABLE NguyenVatLieu (
     MaNVL INT PRIMARY KEY,
@@ -214,8 +220,22 @@ INSERT INTO ChiTietPhieuNhap (MaPN, MaNVL, SoLuongNhap) VALUES
 (1, 2, 20),
 (2, 3, 15),
 (2, 4, 50);
+-----------------------------------------------
+SELECT 
+  hd.MaHD,
+  dd.TenKH,
+  dv.TenDichVu,
+  hd.SoLuong,
+  dv.DonGia,
+  dv.DonGia * hd.SoLuong AS ThanhTien,
+  hd.TrangThai
+FROM HoaDon hd
+JOIN DonDat dd ON hd.MaDonDat = dd.MaDonDat
+JOIN DichVu dv ON dd.MaDichVu = dv.MaDichVu;
 
 
+
+------------------------------------------------
 CREATE VIEW View_ThongTinCaNhan AS
 SELECT MaNV, TenNV, GioiTinh, NgaySinh, SDT_NV
 FROM NhanVien
