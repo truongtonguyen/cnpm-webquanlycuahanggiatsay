@@ -26,6 +26,32 @@ db.connect((err) => {
 app.use(cors());
 app.use(bodyParser.json());
 
+
+app.get('/hoa-don', (req, res) => {
+  const sql = `
+    SELECT 
+      hd.MaHD,
+      dd.TenKH,
+      dv.TenDichVu,
+      hd.SoLuong,
+      dv.DonGia,
+      dv.DonGia * hd.SoLuong AS ThanhTien,
+      hd.TrangThai
+    FROM HoaDon hd
+    JOIN DonDat dd ON hd.MaDonDat = dd.MaDonDat
+    JOIN DichVu dv ON dd.MaDichVu = dv.MaDichVu
+  `;
+db.query(sql, (err, rows) => {
+
+    if (err) {
+      console.error("Lỗi SQL: ", err);
+      return res.status(500).json({ error: 'Lỗi truy vấn CSDL' });
+    }
+    res.json(rows);
+  });
+});
+
+
 // -------------------- ĐĂNG NHẬP --------------------
 
 const adminUser = {
@@ -130,6 +156,7 @@ app.get('/tong-quan', (req, res) => {
   });
 });
 
+
 // -------------------- LẤY ĐƠN HÀNG CHƯA XỬ LÝ --------------------
 
 app.get('/don-hang', (req, res) => {
@@ -152,40 +179,56 @@ app.get('/don-hang', (req, res) => {
 
 app.post('/tao-hoa-don', (req, res) => {
   const { maDon, soLuong } = req.body;
+  console.log("📦 Nhận từ client:", req.body);
 
-  db.query(
-    `INSERT INTO HoaDon (MaDon, SoLuong, TrangThai) VALUES (?, ?, 'Chưa thanh toán')`,
-    [maDon, soLuong],
-    (err, result) => {
+  // Kiểm tra trùng hóa đơn
+  db.query('SELECT * FROM HoaDon WHERE MaDonDat = ?', [maDon], (errCheck, rows) => {
+    if (errCheck) {
+      console.error("❌ Lỗi kiểm tra hóa đơn:", errCheck);
+      return res.status(500).send("Lỗi kiểm tra");
+    }
+
+    if (rows.length > 0) {
+      return res.status(400).send("Đơn hàng này đã có hóa đơn!");
+    }
+
+    // Tiếp tục insert
+    const insertHD = `
+      INSERT INTO HoaDon (MaDonDat, SoLuong, NgayLap, TrangThai)
+      VALUES (?, ?, CURDATE(), 'Chưa thanh toán')
+    `;
+
+    db.query(insertHD, [maDon, soLuong], (err, result) => {
       if (err) {
         console.error("❌ Lỗi tạo hóa đơn:", err);
         return res.status(500).send("Lỗi tạo hóa đơn");
       }
 
-      // cập nhật trạng thái đơn hàng
       db.query(
-        `UPDATE DonDat SET TrangThai = 'Đã tạo hóa đơn' WHERE MaDon = ?`,
+        `UPDATE DonDat SET TrangThai = 'Đã tạo hóa đơn' WHERE MaDonDat = ?`,
         [maDon],
         (err2) => {
           if (err2) {
             console.error("❌ Lỗi cập nhật đơn hàng:", err2);
             return res.status(500).send("Lỗi cập nhật đơn hàng");
           }
-          res.send("Đã tạo hóa đơn");
+          res.send("Đã tạo hóa đơn thành công!");
         }
       );
-    }
-  );
+    });
+  });
 });
 
-// -------------------- LẤY DANH SÁCH HÓA ĐƠN --------------------
 
+
+
+// -------------------- LẤY DANH SÁCH HÓA ĐƠN --------------------
 app.get('/hoa-don', (req, res) => {
   const sql = `
-    SELECT hd.MaHD, dd.HoTen, dv.TenDV, hd.SoLuong, dv.DonViTinh, dv.DonGia,
-           (hd.SoLuong * dv.DonGia) AS ThanhTien, hd.TrangThai
+    SELECT hd.MaHD, dd.HoTen, dv.TenDV, hd.SoLuong, hd.DonViTinh, hd.DonGia,
+           (hd.SoLuong * hd.DonGia) AS ThanhTien, hd.TrangThai
     FROM HoaDon hd
-    JOIN DonDat dd ON hd.MaDon = dd.MaDon
+    JOIN DonDat dd ON hd.MaDon = dd.MaDonDat
     JOIN DichVu dv ON dd.MaDV = dv.MaDV
   `;
   db.query(sql, (err, rows) => {
@@ -196,6 +239,7 @@ app.get('/hoa-don', (req, res) => {
     res.json(rows);
   });
 });
+
 
 // -------------------- CHẠY SERVER --------------------
 
