@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <title>Quản lý nhân viên</title>
+  <link rel="stylesheet" href="admin_style.css">
+</head>
+<body>
+  <header class="admin-header">
+    <h1>Trang Quản Trị - Chạy Siêu Nhanh</h1>
+  </header>
+
+  <nav class="admin-nav">
+    <a href="trang_chu_admin.html">Tổng quan</a>
+    <a href="don_hang.html">Đơn hàng</a>
+    <a href="hoa_don.html">Hóa đơn</a>
+    <a href="nhan_vien.html">Nhân viên</a>
+    <a href="#" onclick="logout()">Đăng xuất</a>
+  </nav>
+
+  <div class="content">
+    <h2 class="center-text">Danh sách nhân viên</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Mã NV</th>
+          <th>Tên</th>
+          <th>Giới tính</th>
+          <th>Ngày sinh</th>
+          <th>SĐT</th>
+          <th>Xoá</th>
+        </tr>
+      </thead>
+      <tbody id="employee-list">
+        <!-- Dữ liệu sẽ được load từ JS -->
+      </tbody>
+    </table>
+
+    <h2 class="center-text">Thêm nhân viên</h2>
+  <div class="form-container">
+    <form id="add-employee-form">
+      <input type="text" name="tenNV" placeholder="Tên nhân viên" required>
+      <select name="gioiTinh" required>
+        <option value="">-- Giới tính --</option>
+        <option value="Nam">Nam</option>
+        <option value="Nữ">Nữ</option>
+      </select>
+      <input type="date" name="ngaySinh" required>
+      <input type="text" name="sdtNV" placeholder="Số điện thoại" required>
+      <button type="submit">Thêm</button>
+    </form>
+  </div>
+
+  </div>
+
+  <script src="nhan_vien.js"></script>
+</body>
+</html>

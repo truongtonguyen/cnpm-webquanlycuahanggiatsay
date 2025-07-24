@@ -10,7 +10,7 @@ const PORT = 3000;
 const db = mysql.createConnection({
   host: "localhost",
   user: "root", // thay bằng user thật nếu có
-  password: "123456", // thay bằng mật khẩu nếu có
+  password: "user", // thay bằng mật khẩu nếu có
   database: "quanlycuahanggs" // tên cơ sở dữ liệu của bạn
 });
 
@@ -219,6 +219,58 @@ app.post('/tao-hoa-don', (req, res) => {
   });
 });
 
+
+//Lấy danh sách nhân viên
+app.get("/api/nhanvien", (req, res) => {
+  const sql = "SELECT MaNV, TenNV, GioiTinh, NgaySinh, SDT_NV FROM NhanVien";
+
+  db.query(sql, (err, results) => {
+    if (err) {
+      console.error("❌ Lỗi truy vấn danh sách nhân viên:", err);
+      return res.status(500).json({ error: "Lỗi truy vấn dữ liệu" });
+    }
+    res.json(results);
+  });
+});
+
+
+// Thêm nhân viên mới
+app.post("/api/nhanvien", (req, res) => {
+  const { tenNV, gioiTinh, ngaySinh, sdtNV } = req.body;
+  const maNV = `NV${Math.floor(Math.random() * 10000).toString().padStart(4, '0')}`;
+
+  const sql = `
+    INSERT INTO NhanVien (MaNV, TenNV, GioiTinh, NgaySinh, SDT_NV)
+    VALUES (?, ?, ?, ?, ?)
+  `;
+
+  db.query(sql, [maNV, tenNV, gioiTinh, ngaySinh, sdtNV], (err, result) => {
+    if (err) {
+      console.error("❌ Lỗi thêm nhân viên:", err);
+      return res.status(500).json({ error: "Lỗi khi thêm nhân viên" });
+    }
+    res.json({ success: true, maNV });
+  });
+});
+
+// Xoá nhân viên theo mã
+app.delete("/api/nhanvien/:maNV", (req, res) => {
+  const maNV = req.params.maNV;
+
+  const sql = "DELETE FROM NhanVien WHERE MaNV = ?";
+  db.query(sql, [maNV], (err, result) => {
+    if (err) {
+      console.error("❌ Lỗi khi xoá nhân viên:", err);
+      return res.status(500).json({ error: "Lỗi khi xoá nhân viên" });
+    }
+
+    if (result.affectedRows === 0) {
+      return res.status(404).json({ error: "Không tìm thấy nhân viên" });
+    }
+
+    res.json({ success: true });
+  });
+});
 
 
 

@@ -167,3 +167,45 @@ body {
   color: #333;
   font-size: 18px;
 }
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 30px;
+}
+
+table th, table td {
+  border: 1px solid #ccc;
+  padding: 10px;
+  text-align: center;
+}
+
+form input, form button {
+  padding: 8px;
+  margin: 5px;
+}
+
+form button {
+  background-color: #5fa0ea;
+  border: none;
+  color: white;
+  cursor: pointer;
+}
+.center-text {
+  text-align: center;
+  margin-top: 40px;
+  font-weight: bold;
+}
+
+.form-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
+}
+
+#add-employee-form {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
